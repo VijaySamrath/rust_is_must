@@ -1,6 +1,7 @@
 use std::io;
 use rand::Rng;
 use core::cmp::Ordering;
+use colored::*;
 
 fn main() {
     println!("Guess the Number!");
@@ -16,6 +17,8 @@ fn main() {
 
     io::stdin()
          .read_line(&mut guess)
+         //  the read_line method on the standard input handle to get input from the user.
+         // full job of read_line is to take whatever the user types into standard input and append that into a string
          .expect("Failed to read line");
 
     let guess: u32 = match guess.trim().parse(){
@@ -26,9 +29,10 @@ fn main() {
     println!("you guessed: {}", guess);
 
     match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too Big"),
-        Ordering::Equal => {println!("You win");
+        Ordering::Less => println!("{}", "Too small!".red()),
+        Ordering::Greater => println!("{}", "Too Big".red()),
+        Ordering::Equal => {
+            println!("{}","You win".green());
            break;
            },
     }
