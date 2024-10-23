@@ -1,8 +1,12 @@
 fn main() {
-    // --- Ownership rules ---
-    // 1. Each value in Rust has a Variable that's called its Owner.
-    // 2. There can only be one owner at a time.
-    // 3. When the owner goes out of scope, the value will be dropped.
-}    
+    let mut s1 = String::from("hello");
 
+    let len = calculate_length(&mut s1);
 
+    println!("The length of '{s1}' is {len}.");
+}
+
+fn calculate_length(s: &mut String) -> usize {
+    s.push_str("Hello world");
+    s.len()
+}
